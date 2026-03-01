@@ -38,7 +38,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Visual Graph
 
 - [ ] **GRPH-01**: Report embeds an interactive graph rendering tools as nodes and connections as directed edges
-- [ ] **GRPH-02**: Graph positions nodes using Alteryx canvas X/Y coordinates to preserve Designer canvas layout
+- [ ] **GRPH-02**: Graph uses hierarchical left-to-right auto-layout (topological sort following data flow direction) by default; user can opt in to Alteryx canvas X/Y coordinate positioning via `--canvas-layout` flag
 - [ ] **GRPH-03**: Graph nodes are color-coded by change type: green=added, red=removed, yellow=modified, blue=connection change; unchanged tools rendered in neutral color
 - [ ] **GRPH-04**: User can hover or click on a graph node to display an inline configuration diff for that tool
 
@@ -86,7 +86,6 @@ Explicitly excluded. Documented to prevent scope creep.
 | AI natural language change summary | Hallucination risk unacceptable for regulated workflows before false-positive rate is proven |
 | Web upload UI | Requires server infrastructure; Phase 3 with API |
 | `.yxzp` packaged workflow support | ZIP container requires extraction pre-processing; defer until core parser is stable |
-| Advanced graph layout algorithms | Canvas X/Y coordinates are sufficient and semantically correct for v1 |
 | Windows/Mac installer or executable | uv + pip install is sufficient for developer audience in v1 |
 
 ## Traceability
@@ -95,36 +94,36 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PARSE-01 | — | Pending |
-| PARSE-02 | — | Pending |
-| PARSE-03 | — | Pending |
-| PARSE-04 | — | Pending |
-| NORM-01 | — | Pending |
-| NORM-02 | — | Pending |
-| NORM-03 | — | Pending |
-| NORM-04 | — | Pending |
-| DIFF-01 | — | Pending |
-| DIFF-02 | — | Pending |
-| DIFF-03 | — | Pending |
-| DIFF-04 | — | Pending |
-| REPT-01 | — | Pending |
-| REPT-02 | — | Pending |
-| REPT-03 | — | Pending |
-| REPT-04 | — | Pending |
-| GRPH-01 | — | Pending |
-| GRPH-02 | — | Pending |
-| GRPH-03 | — | Pending |
-| GRPH-04 | — | Pending |
-| CLI-01 | — | Pending |
-| CLI-02 | — | Pending |
-| CLI-03 | — | Pending |
-| CLI-04 | — | Pending |
+| PARSE-01 | Phase 2 | Pending |
+| PARSE-02 | Phase 2 | Pending |
+| PARSE-03 | Phase 2 | Pending |
+| PARSE-04 | Phase 1 | Pending |
+| NORM-01 | Phase 3 | Pending |
+| NORM-02 | Phase 3 | Pending |
+| NORM-03 | Phase 3 | Pending |
+| NORM-04 | Phase 3 | Pending |
+| DIFF-01 | Phase 5 | Pending |
+| DIFF-02 | Phase 5 | Pending |
+| DIFF-03 | Phase 5 | Pending |
+| DIFF-04 | Phase 4 | Pending |
+| REPT-01 | Phase 7 | Pending |
+| REPT-02 | Phase 7 | Pending |
+| REPT-03 | Phase 7 | Pending |
+| REPT-04 | Phase 7 | Pending |
+| GRPH-01 | Phase 8 | Pending |
+| GRPH-02 | Phase 8 | Pending |
+| GRPH-03 | Phase 8 | Pending |
+| GRPH-04 | Phase 8 | Pending |
+| CLI-01 | Phase 9 | Pending |
+| CLI-02 | Phase 9 | Pending |
+| CLI-03 | Phase 6 | Pending |
+| CLI-04 | Phase 9 | Pending |
 
 **Coverage:**
 - v1 requirements: 24 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 24 ⚠️
+- Mapped to phases: 24
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-01*
-*Last updated: 2026-03-01 after initial definition*
+*Last updated: 2026-03-01 — GRPH-02 revised: hierarchical auto-layout as default, --canvas-layout flag for canvas X/Y positioning*
