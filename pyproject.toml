@@ -20,6 +20,7 @@ acd = "alteryx_diff.__main__:main"
 dev = [
     "pytest>=8.0",
     "mypy>=1.15",
+    "lxml-stubs>=0.5",
     "ruff>=0.15",
     "pre-commit>=3.0",
 ]
