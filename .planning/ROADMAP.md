@@ -33,12 +33,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. `WorkflowDoc`, `AlteryxNode`, `AlteryxConnection`, `DiffResult`, `NodeDiff`, and `EdgeDiff` dataclasses exist as frozen types in `models/`
   3. A developer can import any model class and construct an instance with typed fields (ToolID, type, position, config, connections) without errors
   4. `pytest` runs and passes on the empty scaffold (zero test failures, no import errors)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Initialize uv project, pyproject.toml, directory structure, and pre-commit hooks
-- [ ] 01-02: Define all frozen dataclasses in models/ (WorkflowDoc, AlteryxNode, AlteryxConnection, DiffResult, NodeDiff, EdgeDiff)
-- [ ] 01-03: Write model unit tests and verify pytest passes on clean scaffold
+- [ ] 01-01-PLAN.md — Initialize uv project, pyproject.toml, directory structure, and pre-commit hooks
+- [ ] 01-02-PLAN.md — Define all frozen dataclasses in models/ (WorkflowDoc, AlteryxNode, AlteryxConnection, DiffResult, NodeDiff, EdgeDiff)
+- [ ] 01-03-PLAN.md — Write model unit tests and verify pytest passes on clean scaffold
 
 ### Phase 2: XML Parser and Validation
 **Goal**: A developer can point the parser at two .yxmd files and get back two valid WorkflowDoc instances, or a descriptive error if either file is malformed.
