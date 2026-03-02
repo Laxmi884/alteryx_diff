@@ -82,12 +82,12 @@ Plans:
   2. A tool genuinely added to the new workflow is identified as an addition, not a rematch of an existing tool
   3. A tool genuinely removed from the old workflow is identified as a removal, not matched to an unrelated tool
   4. The matcher cost function threshold (>0.8) rejects low-confidence matches and treats them as distinct add/remove pairs rather than forcing a false match
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: Implement exact ToolID lookup pass (O(n) dict lookup); output matched pairs and two unmatched sets (old-only, new-only)
-- [ ] 04-02: Implement Hungarian algorithm fallback via scipy.optimize.linear_sum_assignment using type + position proximity + config hash similarity cost function; apply threshold rejection at cost > 0.8
-- [ ] 04-03: Write node matcher tests covering exact match, full ToolID regeneration, partial regeneration, genuine additions, genuine removals, and threshold rejection behavior
+- [ ] 04-01-PLAN.md — Add scipy dependency; implement matcher/ package with MatchResult dataclass and match() Pass 1 (exact ToolID lookup, O(n) dict); _hungarian_match() stub
+- [ ] 04-02-PLAN.md — Implement _cost.py (cost matrix helpers) and complete _hungarian_match() (per-type Hungarian with linear_sum_assignment + threshold rejection at cost > 0.8)
+- [ ] 04-03-PLAN.md — Create tests/fixtures/matching.py (7 fixture pairs, ToolIDs 301+) and tests/test_matcher.py (9 tests covering all DIFF-04 scenarios)
 
 ### Phase 5: Diff Engine
 **Goal**: Given two matched WorkflowDocs, the diff engine reports every functional change — tool additions, removals, configuration modifications with before/after values, and connection changes — with no false positives.
