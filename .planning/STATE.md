@@ -18,23 +18,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-28)
 
 **Core value:** Accurate detection of functional changes — zero false positives from layout noise, zero missed configuration changes.
-**Current focus:** Phase 2 — XML Parser and Validation
+**Current focus:** Phase 3 — Normalization Layer
 
 ## Current Position
 
-Phase: 2 of 9 (XML Parser and Validation)
-Plan: 2 of 3 in current phase
+Phase: 3 of 9 (Normalization Layer)
+Plan: 1 of 4 in current phase
 Status: In progress
-Last activity: 2026-03-01 — Plan 02-02 complete: 12-test fixture-based parser acceptance suite; tests/fixtures/__init__.py with 7 XML constants; 34 total tests pass
+Last activity: 2026-03-01 — Plan 03-01 complete: NormalizedNode and NormalizedWorkflowDoc frozen dataclasses with two-path config_hash/position separation; all 10 model types importable from alteryx_diff.models; 34 tests pass
 
-Progress: [██░░░░░░░░] 18% (5/27 plans)
+Progress: [██░░░░░░░░] 22% (6/27 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 5 min
-- Total execution time: 20 min
+- Total plans completed: 6
+- Average duration: 4 min
+- Total execution time: 22 min
 
 **By Phase:**
 
@@ -42,15 +42,17 @@ Progress: [██░░░░░░░░] 18% (5/27 plans)
 |-------|-------|-------|----------|
 | 01-scaffold-and-data-models | 3 | 13 min | 4 min |
 | 02-xml-parser-and-validation | 2 | 10 min | 5 min |
+| 03-normalization-layer | 1 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (6 min), 01-02 (4 min), 01-03 (3 min), 02-01 (7 min), 02-02 (3 min)
+- Last 5 plans: 01-03 (3 min), 02-01 (7 min), 02-02 (3 min), 03-01 (2 min)
 - Trend: decreasing
 
 *Updated after each plan completion*
 | Phase 01-scaffold-and-data-models P03 | 3 | 1 tasks | 1 files |
 | Phase 02-xml-parser-and-validation P01 | 7 | 2 tasks | 4 files |
 | Phase 02-xml-parser-and-validation P02 | 3 | 2 tasks | 2 files |
+| Phase 03-normalization-layer P01 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -76,6 +78,10 @@ Recent decisions affecting current work:
 - [02-01]: ParseError hierarchy carries filepath + message attributes; CLI catches ParseError base for exit code 2
 - [02-02]: test_parse_directory_raises accepts (UnreadableFileError, MalformedXMLError) — OS-level directory read behavior varies between platforms
 - [02-02]: b"..." byte-string literals used for all XML fixture constants — explicit bytes, UTF-8 implicit, no BOM required for lxml
+- [03-01]: NormalizedNode.position is tuple[float, float] as a separate field from config_hash — layout-only moves never affect config comparison path (NORM-04)
+- [03-01]: NormalizedNode.source carries full AlteryxNode for downstream identity access (tool_id, tool_type)
+- [03-01]: normalized.py imports from models.types and models.workflow directly (not from models package) — avoids circular import since file lives inside models/
+- [03-01]: No __all__ in normalized.py — __init__.py is the sole public surface per project convention
 
 ### Pending Todos
 
@@ -89,5 +95,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Completed 02-02-PLAN.md — 12-test fixture-based parser acceptance suite; tests/fixtures/__init__.py with 7 XML constants; 34 total tests pass — ready for Phase 2 Plan 03
+Stopped at: Completed 03-01-PLAN.md — NormalizedNode and NormalizedWorkflowDoc frozen dataclasses; two-path config_hash/position contract; 34 tests pass — ready for Phase 3 Plan 02
 Resume file: None

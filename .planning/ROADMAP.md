@@ -65,13 +65,13 @@ Plans:
   3. Attribute reordering (XML attributes in different sequence) does not change the config hash — C14N canonicalization is applied before hashing
   4. `node.position` (X/Y) is stored as a separate field from `node.config_hash` — the two data paths are never unified
   5. `--include-positions` flag is documented in `--help` output and, when passed, causes position changes to be included in the diff signal
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 03-01: Implement C14N canonicalization via lxml.etree.canonicalize() and SHA-256 config hashing per node; confirm attribute reordering produces identical hashes
-- [ ] 03-02: Implement GUID, timestamp, and TempFile path stripping using XPath patterns; validate with fixture pairs from real .yxmd files
-- [ ] 03-03: Implement position separation — store X/Y in node.position, exclude from config_hash path; implement --include-positions toggle as a normalization parameter
-- [ ] 03-04: Write normalization contract tests using fixture pairs: same-workflow round-trip, GUID injection, timestamp injection, attribute reordering, position drift, TempFile variants
+- [ ] 03-01-PLAN.md — Define NormalizedNode and NormalizedWorkflowDoc frozen dataclasses in models/; extend models/__init__.py export surface
+- [ ] 03-02-PLAN.md — Implement normalizer package: patterns.py (stripping registry), _strip.py (recursive noise stripper), normalizer.py (normalize() entry point), __init__.py
+- [ ] 03-03-PLAN.md — Create tests/fixtures/normalization.py fixture library: 7 NodePairs and ROUND_TRIP_WORKFLOW covering all normalization scenarios
+- [ ] 03-04-PLAN.md — Write normalization contract test suite in tests/test_normalizer.py: 15 tests covering NORM-01 through NORM-04, idempotency, source mutation protection, frozen contracts
 
 ### Phase 4: Node Matcher
 **Goal**: When Alteryx regenerates ToolIDs, the node matcher still correctly pairs old and new tool instances rather than producing phantom add/remove pairs.
@@ -188,7 +188,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Scaffold and Data Models | 3/3 | Complete   | 2026-03-01 |
 | 2. XML Parser and Validation | 2/2 | Complete   | 2026-03-01 |
-| 3. Normalization Layer | 0/4 | Not started | - |
+| 3. Normalization Layer | 1/4 | In Progress|  |
 | 4. Node Matcher | 0/3 | Not started | - |
 | 5. Diff Engine | 0/3 | Not started | - |
 | 6. Pipeline Orchestration and JSON Renderer | 0/3 | Not started | - |

@@ -18,8 +18,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **NORM-01**: System strips whitespace differences and normalizes XML attribute ordering using C14N canonicalization to eliminate false positives
 - [ ] **NORM-02**: System removes non-functional Alteryx-generated metadata (GUIDs, timestamps, TempFile paths) before comparison
-- [ ] **NORM-03**: Canvas position (X/Y) is excluded from diff detection by default — stored separately for graph layout use only
-- [ ] **NORM-04**: User can opt in to position-based change detection via `--include-positions` flag with clear `--help` documentation explaining the default
+- [x] **NORM-03**: Canvas position (X/Y) is excluded from diff detection by default — stored separately for graph layout use only
+- [x] **NORM-04**: User can opt in to position-based change detection via `--include-positions` flag with clear `--help` documentation explaining the default
 
 ### Diff Detection
 
@@ -100,8 +100,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PARSE-04 | Phase 1 | Complete |
 | NORM-01 | Phase 3 | Pending |
 | NORM-02 | Phase 3 | Pending |
-| NORM-03 | Phase 3 | Pending |
-| NORM-04 | Phase 3 | Pending |
+| NORM-03 | Phase 3 | Complete |
+| NORM-04 | Phase 3 | Complete |
 | DIFF-01 | Phase 5 | Pending |
 | DIFF-02 | Phase 5 | Pending |
 | DIFF-03 | Phase 5 | Pending |
