@@ -1,0 +1,321 @@
+# ruff: noqa: E501
+from __future__ import annotations
+
+from datetime import UTC, datetime
+from typing import Any
+
+from jinja2 import Environment
+
+from alteryx_diff.models import DiffResult, NodeDiff
+from alteryx_diff.models.diff import EdgeDiff
+from alteryx_diff.models.workflow import AlteryxNode
+
+_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alteryx Workflow Diff Report</title>
+<style>
+body { margin: 0; padding: 16px; background: #fff; color: #212529; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.container { max-width: 960px; margin: 0 auto; }
+.badge { display: inline-block; padding: 6px 14px; border-radius: 4px; font-weight: 600; font-size: 1.1em; text-decoration: none; cursor: pointer; margin: 4px; }
+.badge-added { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.badge-removed { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.badge-modified { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.badge-connections { background: #cce5ff; color: #004085; border: 1px solid #b8daff; }
+h2 { font-size: 1.1em; font-weight: 600; margin: 24px 0 8px; border-bottom: 2px solid #eee; padding-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.tool-row { display: flex; align-items: center; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 4px; margin: 4px 0; cursor: pointer; background: #f8f9fa; user-select: none; }
+.tool-row:hover { background: #e9ecef; }
+.chevron { display: inline-block; transition: transform 0.15s; margin-right: 8px; font-style: normal; }
+.tool-row.expanded .chevron { transform: rotate(90deg); }
+.tool-detail { padding: 8px 12px 8px 36px; border: 1px solid #e9ecef; border-top: none; border-radius: 0 0 4px 4px; background: #fff; }
+.field-row { margin: 6px 0; }
+.field-name { font-weight: 600; font-size: 0.85em; color: #555; margin-bottom: 2px; }
+.before-row { background: #fff5f5; border-left: 3px solid #dc3545; padding: 4px 8px; margin: 2px 0; }
+.after-row { background: #f5fff5; border-left: 3px solid #28a745; padding: 4px 8px; margin: 2px 0; }
+.before-label { font-weight: 600; color: #dc3545; }
+.after-label { font-weight: 600; color: #28a745; }
+.value-block { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre-wrap; word-break: break-all; font-size: 0.9em; }
+.ctrl-btn { font-size: 0.8em; padding: 2px 8px; cursor: pointer; border: 1px solid #ccc; border-radius: 3px; background: #fff; margin-left: 4px; }
+.empty { color: #888; font-style: italic; }
+header { border-bottom: 1px solid #dee2e6; margin-bottom: 20px; padding-bottom: 12px; }
+header h1 { font-size: 1.5em; margin: 0 0 4px; }
+header p { margin: 2px 0; color: #666; font-size: 0.9em; }
+@media print { .ctrl-btn { display: none; } .tool-detail { display: block !important; } }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Alteryx Workflow Diff Report</h1>
+  <p>Generated: {{ timestamp }}</p>
+  <p>{{ file_a }} vs {{ file_b }}</p>
+</header>
+<section id="summary">
+  <a href="#added" onclick="expandSection('added'); return true;" class="badge badge-added">Added: {{ summary.added }}</a>
+  <a href="#removed" onclick="expandSection('removed'); return true;" class="badge badge-removed">Removed: {{ summary.removed }}</a>
+  <a href="#modified" onclick="expandSection('modified'); return true;" class="badge badge-modified">Modified: {{ summary.modified }}</a>
+  <a href="#connections" onclick="expandSection('connections'); return true;" class="badge badge-connections">Connections: {{ summary.connections }}</a>
+</section>
+<section>
+  <h2 id="added">
+    Added Tools
+    <button class="ctrl-btn" onclick="expandAll('added')">Expand All</button>
+    <button class="ctrl-btn" onclick="collapseAll('added')">Collapse All</button>
+  </h2>
+  {% for tool in diff_data.added %}
+  <div class="tool-row" id="row-added-{{ tool.tool_id }}"
+       onclick="toggleTool({{ tool.tool_id }}, 'added')">
+    <span class="chevron">&#9654;</span>
+    {{ tool.tool_type }} (ID: {{ tool.tool_id }})
+  </div>
+  <div class="tool-detail" id="detail-added-{{ tool.tool_id }}" hidden></div>
+  {% else %}
+  <p class="empty">No added tools.</p>
+  {% endfor %}
+</section>
+<section>
+  <h2 id="removed">
+    Removed Tools
+    <button class="ctrl-btn" onclick="expandAll('removed')">Expand All</button>
+    <button class="ctrl-btn" onclick="collapseAll('removed')">Collapse All</button>
+  </h2>
+  {% for tool in diff_data.removed %}
+  <div class="tool-row" id="row-removed-{{ tool.tool_id }}"
+       onclick="toggleTool({{ tool.tool_id }}, 'removed')">
+    <span class="chevron">&#9654;</span>
+    {{ tool.tool_type }} (ID: {{ tool.tool_id }})
+  </div>
+  <div class="tool-detail" id="detail-removed-{{ tool.tool_id }}" hidden></div>
+  {% else %}
+  <p class="empty">No removed tools.</p>
+  {% endfor %}
+</section>
+<section>
+  <h2 id="modified">
+    Modified Tools
+    <button class="ctrl-btn" onclick="expandAll('modified')">Expand All</button>
+    <button class="ctrl-btn" onclick="collapseAll('modified')">Collapse All</button>
+  </h2>
+  {% for tool in diff_data.modified %}
+  <div class="tool-row" id="row-modified-{{ tool.tool_id }}"
+       onclick="toggleTool({{ tool.tool_id }}, 'modified')">
+    <span class="chevron">&#9654;</span>
+    {{ tool.tool_type }} (ID: {{ tool.tool_id }})
+  </div>
+  <div class="tool-detail" id="detail-modified-{{ tool.tool_id }}" hidden></div>
+  {% else %}
+  <p class="empty">No modified tools.</p>
+  {% endfor %}
+</section>
+<section>
+  <h2 id="connections">
+    Connection Changes
+    <button class="ctrl-btn" onclick="expandAll('connections')">Expand All</button>
+    <button class="ctrl-btn" onclick="collapseAll('connections')">Collapse All</button>
+  </h2>
+  {% for e in diff_data.connections %}
+  <div class="tool-row" id="row-connections-{{ loop.index }}"
+       onclick="toggleTool({{ loop.index }}, 'connections')">
+    <span class="chevron">&#9654;</span>
+    {{ e.src_tool }}:{{ e.src_anchor }} to {{ e.dst_tool }}:{{ e.dst_anchor }}
+  </div>
+  <div class="tool-detail" id="detail-connections-{{ loop.index }}" hidden></div>
+  {% else %}
+  <p class="empty">No connection changes.</p>
+  {% endfor %}
+</section>
+<script type="application/json" id="diff-data">{{ diff_data | tojson }}</script>
+<script>
+var DIFF_DATA = JSON.parse(document.getElementById('diff-data').textContent);
+
+function expandSection(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (!section) return;
+    section.scrollIntoView({behavior: 'smooth'});
+    var rows = section.querySelectorAll('.tool-row');
+    for (var i = 0; i < rows.length; i++) {
+        if (!rows[i].classList.contains('expanded')) rows[i].click();
+    }
+}
+
+function toggleTool(toolId, section) {
+    var detailEl = document.getElementById('detail-' + section + '-' + toolId);
+    var rowEl = document.getElementById('row-' + section + '-' + toolId);
+    if (!detailEl || !rowEl) return;
+    var isExpanded = rowEl.classList.contains('expanded');
+    if (isExpanded) {
+        detailEl.hidden = true;
+        rowEl.classList.remove('expanded');
+    } else {
+        if (!detailEl.dataset.built) {
+            buildDetail(toolId, section, detailEl);
+            detailEl.dataset.built = 'true';
+        }
+        detailEl.hidden = false;
+        rowEl.classList.add('expanded');
+    }
+}
+
+function buildDetail(toolId, section, container) {
+    var sectionData = DIFF_DATA[section];
+    var tool = null;
+    for (var i = 0; i < sectionData.length; i++) {
+        if (sectionData[i].tool_id === toolId) { tool = sectionData[i]; break; }
+    }
+    if (!tool) return;
+    var frag = document.createDocumentFragment();
+    if (section === 'modified') {
+        tool.field_diffs.forEach(function(fd) {
+            var row = document.createElement('div');
+            row.className = 'field-row';
+            var nameEl = document.createElement('div');
+            nameEl.className = 'field-name';
+            nameEl.textContent = fd.field;
+            var beforeRow = document.createElement('div');
+            beforeRow.className = 'before-row';
+            var beforeLabel = document.createElement('span');
+            beforeLabel.className = 'before-label';
+            beforeLabel.textContent = 'Before: ';
+            var beforeVal = document.createElement('span');
+            beforeVal.className = 'value-block';
+            beforeVal.textContent = formatVal(fd.before);
+            beforeRow.appendChild(beforeLabel);
+            beforeRow.appendChild(beforeVal);
+            var afterRow = document.createElement('div');
+            afterRow.className = 'after-row';
+            var afterLabel = document.createElement('span');
+            afterLabel.className = 'after-label';
+            afterLabel.textContent = 'After: ';
+            var afterVal = document.createElement('span');
+            afterVal.className = 'value-block';
+            afterVal.textContent = formatVal(fd.after);
+            afterRow.appendChild(afterLabel);
+            afterRow.appendChild(afterVal);
+            row.appendChild(nameEl);
+            row.appendChild(beforeRow);
+            row.appendChild(afterRow);
+            frag.appendChild(row);
+        });
+    } else if (section === 'added' || section === 'removed') {
+        var config = tool.config;
+        Object.keys(config).forEach(function(k) {
+            var row = document.createElement('div');
+            row.className = 'field-row';
+            var nameEl = document.createElement('div');
+            nameEl.className = 'field-name';
+            nameEl.textContent = k;
+            var valEl = document.createElement('div');
+            valEl.className = 'value-block';
+            valEl.textContent = formatVal(config[k]);
+            row.appendChild(nameEl);
+            row.appendChild(valEl);
+            frag.appendChild(row);
+        });
+    } else if (section === 'connections') {
+        var row = document.createElement('div');
+        row.className = 'field-row';
+        var valEl = document.createElement('span');
+        valEl.className = 'value-block';
+        valEl.textContent = tool.src_tool + ':' + tool.src_anchor + ' -> ' + tool.dst_tool + ':' + tool.dst_anchor + ' (' + tool.change_type + ')';
+        row.appendChild(valEl);
+        frag.appendChild(row);
+    }
+    container.appendChild(frag);
+}
+
+function formatVal(v) {
+    if (v === null || v === undefined) return 'null';
+    if (typeof v === 'object') return JSON.stringify(v, null, 2);
+    return String(v);
+}
+
+function expandAll(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (!section) return;
+    var rows = section.querySelectorAll('.tool-row');
+    for (var i = 0; i < rows.length; i++) {
+        if (!rows[i].classList.contains('expanded')) rows[i].click();
+    }
+}
+
+function collapseAll(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (!section) return;
+    var rows = section.querySelectorAll('.tool-row.expanded');
+    for (var i = 0; i < rows.length; i++) { rows[i].click(); }
+}
+</script>
+</div>
+</body>
+</html>
+"""
+
+
+class HTMLRenderer:
+    """Render a DiffResult to a self-contained HTML string.
+
+    All CSS and JavaScript are embedded inline — no CDN references.
+    Tool detail is lazy-loaded from DIFF_DATA JSON in script tag.
+    Follows the renderer pattern established by JSONRenderer.
+    """
+
+    def render(
+        self,
+        result: DiffResult,
+        file_a: str = "workflow_a.yxmd",
+        file_b: str = "workflow_b.yxmd",
+    ) -> str:
+        """Render result to a self-contained HTML string."""
+        # autoescape=True required — avoids ruff B701
+        env = Environment(autoescape=True)
+        env.policies["json.dumps_kwargs"] = {"ensure_ascii": False, "sort_keys": True}
+        template = env.from_string(_TEMPLATE)
+        return template.render(
+            timestamp=datetime.now(UTC).isoformat(),
+            file_a=file_a,
+            file_b=file_b,
+            summary={
+                "added": len(result.added_nodes),
+                "removed": len(result.removed_nodes),
+                "modified": len(result.modified_nodes),
+                "connections": len(result.edge_diffs),
+            },
+            diff_data=self._build_diff_data(result),
+        )
+
+    def _build_diff_data(self, result: DiffResult) -> dict[str, Any]:
+        return {
+            "added": [self._node_to_dict(n) for n in result.added_nodes],
+            "removed": [self._node_to_dict(n) for n in result.removed_nodes],
+            "modified": [self._node_diff_to_dict(nd) for nd in result.modified_nodes],
+            "connections": [self._edge_to_dict(e) for e in result.edge_diffs],
+        }
+
+    def _node_to_dict(self, node: AlteryxNode) -> dict[str, Any]:
+        return {
+            "tool_id": int(node.tool_id),
+            "tool_type": node.tool_type,
+            "config": dict(node.config),
+        }
+
+    def _node_diff_to_dict(self, nd: NodeDiff) -> dict[str, Any]:
+        return {
+            "tool_id": int(nd.tool_id),
+            "tool_type": nd.old_node.tool_type,
+            "field_diffs": [
+                {"field": k, "before": v[0], "after": v[1]}
+                for k, v in nd.field_diffs.items()
+            ],
+        }
+
+    def _edge_to_dict(self, e: EdgeDiff) -> dict[str, Any]:
+        return {
+            "tool_id": int(e.src_tool),
+            "src_tool": int(e.src_tool),
+            "src_anchor": str(e.src_anchor),
+            "dst_tool": int(e.dst_tool),
+            "dst_anchor": str(e.dst_anchor),
+            "change_type": e.change_type,
+        }
