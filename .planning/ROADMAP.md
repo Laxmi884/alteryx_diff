@@ -148,15 +148,12 @@ Plans:
   3. Hovering or clicking a node displays the inline configuration diff for that tool without a page reload or external request
   4. A 500-tool workflow graph renders without browser hang — physics is disabled; default hierarchical layout uses topological sort, `--canvas-layout` mode uses fixed coordinate positioning
   5. The graph is embedded inline in the self-contained HTML file — no external graph library CDN references at report open time
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 08-01: Spike pyvis self-contained HTML output reliability — verify cdn_resources='in_line' behavior, identify Bootstrap CDN leak, implement and test post-processing workaround; decide pyvis vs custom D3.js template based on spike result
-- [ ] 08-02: Implement NetworkX DiGraph construction from DiffResult; assign diff-status attributes (added/removed/modified/unchanged) to nodes for color mapping
-- [ ] 08-03: Implement graph renderer using chosen approach (pyvis or D3.js): default hierarchical left-to-right layout via topological sort; apply change-type color scheme; disable physics; embed as inline HTML
-- [ ] 08-04: Implement `--canvas-layout` rendering mode: position nodes at Alteryx canvas X/Y coordinates instead of hierarchical layout; keep physics disabled
-- [ ] 08-05: Implement hover/click node interaction displaying inline config diff panel from DIFF_DATA; test interaction in browser against fixture workflow with all change types
-- [ ] 08-06: Write graph rendering tests validating node count, edge count, color assignments, default layout vs canvas-layout behavior, and self-contained HTML output against fixture DiffResults
+- [ ] 08-01-PLAN.md — Vendor vis-network 9.1.4 UMD bundle into static/; implement _graph_builder.py (build_digraph, hierarchical_positions, canvas_positions, load_vis_js)
+- [ ] 08-02-PLAN.md — Implement GraphRenderer (HTML fragment with vis-network, color-coded nodes, slide-in diff panel, toggle, fit button); extend HTMLRenderer to embed graph fragment
+- [ ] 08-03-PLAN.md — Create tests/fixtures/graph.py (DiffResult fixtures, ToolIDs 801+) and tests/test_graph_renderer.py (8 tests covering GRPH-01 through GRPH-04)
 
 ### Phase 9: CLI Entry Point
 **Goal**: A developer can run `acd diff workflow_v1.yxmd workflow_v2.yxmd` from the terminal and receive a diff report, with predictable exit codes that CI/CD systems can consume.
@@ -191,5 +188,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 5. Diff Engine | 3/3 | Complete   | 2026-03-06 |
 | 6. Pipeline Orchestration and JSON Renderer | 3/3 | Complete   | 2026-03-06 |
 | 7. HTML Report | 2/2 | Complete   | 2026-03-06 |
-| 8. Visual Graph | 0/6 | Not started | - |
+| 8. Visual Graph | 0/3 | Not started | - |
 | 9. CLI Entry Point | 0/5 | Not started | - |
