@@ -46,7 +46,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **CLI-01**: User can run `python alteryx_diff.py workflow_v1.yxmd workflow_v2.yxmd` and receive a `diff_report.html` output file; `--output` flag for custom output path
 - [ ] **CLI-02**: System exits with standardized codes: 0 = no differences found, 1 = differences detected, 2 = error (malformed input, missing file, etc.)
-- [ ] **CLI-03**: User can generate a JSON summary alongside or instead of the HTML report via `--json` flag, enabling CI/CD integration
+- [x] **CLI-03**: User can generate a JSON summary alongside or instead of the HTML report via `--json` flag, enabling CI/CD integration
 - [ ] **CLI-04**: Report includes governance metadata section: source file paths, SHA-256 file hashes, generation timestamp (ALCOA+ audit compliance)
 
 ## v2 Requirements
@@ -116,7 +116,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GRPH-04 | Phase 8 | Pending |
 | CLI-01 | Phase 9 | Pending |
 | CLI-02 | Phase 9 | Pending |
-| CLI-03 | Phase 6 | Pending |
+| CLI-03 | Phase 6 | Complete |
 | CLI-04 | Phase 9 | Pending |
 
 **Coverage:**
