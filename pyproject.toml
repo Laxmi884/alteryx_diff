@@ -54,6 +54,9 @@ ignore_missing_imports = true
 module = ["deepdiff.*"]
 ignore_missing_imports = true
 
+[tool.uv_build]
+package-data = {"alteryx_diff" = ["static/*.js"]}
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = ["--import-mode=importlib"]
