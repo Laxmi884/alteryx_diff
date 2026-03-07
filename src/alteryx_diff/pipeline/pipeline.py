@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 from alteryx_diff.differ import diff
 from alteryx_diff.matcher import match
-from alteryx_diff.models import DiffResult
+from alteryx_diff.models import DiffResult, WorkflowDoc
 from alteryx_diff.normalizer import normalize
 from alteryx_diff.parser import parse
 
@@ -20,13 +20,20 @@ class DiffRequest:
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class DiffResponse:
-    """Output of pipeline.run(): the completed DiffResult."""
+    """Output of pipeline.run(): the completed DiffResult plus parsed documents."""
 
     result: DiffResult
+    doc_a: WorkflowDoc
+    doc_b: WorkflowDoc
 
 
-def run(request: DiffRequest) -> DiffResponse:
+def run(request: DiffRequest, *, include_positions: bool = False) -> DiffResponse:
     """Execute the full diff pipeline for two .yxmd files.
+
+    Args:
+        request: DiffRequest carrying paths to both .yxmd files.
+        include_positions: When True, canvas X/Y position changes are included
+            in diff detection. Default False to avoid layout noise.
 
     Raises:
         MissingFileError: If either path does not exist.
@@ -40,5 +47,10 @@ def run(request: DiffRequest) -> DiffResponse:
     norm_a = normalize(doc_a)
     norm_b = normalize(doc_b)
     match_result = match(list(norm_a.nodes), list(norm_b.nodes))
-    diff_result = diff(match_result, doc_a.connections, doc_b.connections)
-    return DiffResponse(result=diff_result)
+    diff_result = diff(
+        match_result,
+        doc_a.connections,
+        doc_b.connections,
+        include_positions=include_positions,
+    )
+    return DiffResponse(result=diff_result, doc_a=doc_a, doc_b=doc_b)

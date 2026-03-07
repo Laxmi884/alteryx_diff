@@ -32,6 +32,8 @@ def diff(
     match_result: MatchResult,
     old_connections: tuple[AlteryxConnection, ...],
     new_connections: tuple[AlteryxConnection, ...],
+    *,
+    include_positions: bool = False,
 ) -> DiffResult:
     """Compute the complete diff between two workflow states.
 
@@ -39,6 +41,9 @@ def diff(
         match_result: Output from the node matcher stage.
         old_connections: Connections from the old workflow.
         new_connections: Connections from the new workflow.
+        include_positions: When True, canvas X/Y position changes are detected
+            as modifications even when tool config is otherwise identical.
+            Default False excludes position-only changes (layout noise).
 
     Returns:
         DiffResult containing added/removed nodes, modified node diffs, and edge diffs.
@@ -51,11 +56,25 @@ def diff(
         n.source for n in match_result.removed
     )
 
-    # Path 3: modified nodes — matched pairs with differing config_hash
+    # Path 3: modified nodes — matched pairs with differing config_hash or position
     modified_nodes_list: list[NodeDiff] = []
     for old_norm, new_norm in match_result.matched:
-        if old_norm.config_hash != new_norm.config_hash:
-            node_diff = _diff_node(old_norm.source, new_norm.source)
+        config_changed = old_norm.config_hash != new_norm.config_hash
+        position_changed = include_positions and (
+            old_norm.position != new_norm.position
+        )
+        if config_changed or position_changed:
+            if config_changed:
+                node_diff = _diff_node(old_norm.source, new_norm.source)
+            else:
+                # Position-only change: build NodeDiff directly, bypass _diff_node()
+                # (_diff_node() raises ValueError when DeepDiff finds no config diffs)
+                node_diff = NodeDiff(
+                    tool_id=old_norm.source.tool_id,
+                    old_node=old_norm.source,
+                    new_node=new_norm.source,
+                    field_diffs={"position": (old_norm.position, new_norm.position)},
+                )
             modified_nodes_list.append(node_diff)
     modified_nodes: tuple[NodeDiff, ...] = tuple(modified_nodes_list)
 
