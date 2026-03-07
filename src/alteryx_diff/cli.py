@@ -62,8 +62,13 @@ def diff(  # noqa: B008
 ) -> None:
     """Compare two Alteryx .yxmd workflow files and report differences."""
     # Compute governance metadata upfront — single timestamp for audit consistency
-    hash_a = _file_sha256(workflow_a)
-    hash_b = _file_sha256(workflow_b)
+    # Guard here: missing file raises FileNotFoundError before pipeline even starts
+    try:
+        hash_a = _file_sha256(workflow_a)
+        hash_b = _file_sha256(workflow_b)
+    except OSError as e:
+        typer.echo(f"Error: {e.strerror}: {e.filename}", err=True)
+        raise typer.Exit(code=2) from None
     metadata = _build_governance_metadata(workflow_a, workflow_b, hash_a, hash_b)
 
     # Run pipeline (spinner goes to stderr; stdout stays clean for --json)
