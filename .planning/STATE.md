@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-07T01:57:13.215Z"
+status: in_progress
+last_updated: "2026-03-07T06:48:39Z"
 progress:
-  total_phases: 8
+  total_phases: 9
   completed_phases: 8
-  total_plans: 23
-  completed_plans: 23
+  total_plans: 27
+  completed_plans: 24
 ---
 
 # Project State
@@ -18,16 +18,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-28)
 
 **Core value:** Accurate detection of functional changes — zero false positives from layout noise, zero missed configuration changes.
-**Current focus:** Phase 8 — Visual Graph (Phase 7 complete)
+**Current focus:** Phase 9 — CLI Entry Point (Phase 8 complete)
 
 ## Current Position
 
-Phase: 8 of 9 (Visual Graph) — IN PROGRESS
-Current Plan: 08-03 COMPLETE
-Status: Plan 08-03 complete — GraphRenderer test suite (8 tests) + fixture library (ToolIDs 801-815); all GRPH-01 through GRPH-04 requirements demonstrably tested
-Last activity: 2026-03-06 — Plan 08-03 complete: tests/fixtures/graph.py, tests/test_graph_renderer.py; 2 files, 2 tasks
+Phase: 9 of 9 (CLI Entry Point) — IN PROGRESS
+Current Plan: 09-01 COMPLETE
+Status: Plan 09-01 complete — Typer CLI adapter (cli.py, __main__.py), DiffResponse extended with doc_a/doc_b, differ.diff() with include_positions; 93 tests passing
+Last activity: 2026-03-07 — Plan 09-01 complete: src/alteryx_diff/cli.py, src/alteryx_diff/__main__.py; 6 files, 2 tasks
 
-Progress: [████████░░] 85% (23/27 plans)
+Progress: [█████████░] 89% (24/27 plans)
 
 ## Performance Metrics
 
@@ -70,6 +70,7 @@ Progress: [████████░░] 85% (23/27 plans)
 | Phase 08-visual-graph P01 | 4 | 2 tasks | 3 files |
 | Phase 08-visual-graph P02 | 3 | 2 tasks | 3 files |
 | Phase 08-visual-graph P03 | 6 | 2 tasks | 2 files |
+| Phase 09-cli-entry-point P01 | 7 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -154,6 +155,11 @@ Recent decisions affecting current work:
 - [08-03]: ADDED_DIFF, REMOVED_DIFF, MODIFIED_NODE_DIFF kept in fixtures file but not imported in test file — ruff F401 prevents unused imports in test code; fixtures available for Phase 9 CLI tests
 - [08-03]: _extract_graph_nodes() uses first ']' after 'var GRAPH_NODES = ' marker — reliable for flat array of objects with no nested arrays
 - [08-03]: test_hierarchical_layout asserts pos[801] < pos[802] directional inequality — robust to future LAYOUT_SCALE changes
+- [09-01]: typer.* and rich.* mypy overrides added to pyproject.toml (no stubs published) — follows deepdiff/networkx pattern
+- [09-01]: typer>=0.12 and rich>=13.0 added to pre-commit mypy additional_dependencies so hook env resolves imports
+- [09-01]: _cli_json_output() built in cli.py not JSONRenderer — preserves 5 passing JSONRenderer tests, different schema {added, removed, modified, metadata} vs {summary, tools, connections}
+- [09-01]: Position-only NodeDiff built directly (field_diffs={'position': ...}) — bypasses _diff_node() which raises ValueError on no config diff
+- [09-01]: Spinner skipped when --json set — avoids edge cases with stderr/stdout stream confusion in JSON parsing tools
 
 ### Pending Todos
 
@@ -166,6 +172,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-06
-Stopped at: Completed 08-03-PLAN.md — GraphRenderer test suite (8 tests, 93 total passing); all GRPH-01 through GRPH-04 requirements tested
+Last session: 2026-03-07
+Stopped at: Completed 09-01-PLAN.md — Typer CLI adapter (cli.py, __main__.py), DiffResponse with doc_a/doc_b, differ.diff() with include_positions; 93 tests passing
 Resume file: None
