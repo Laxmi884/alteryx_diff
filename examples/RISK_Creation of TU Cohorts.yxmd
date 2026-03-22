@@ -1,0 +1,1020 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2024.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <CachedCosmeticName />
+          <File RecordLimit="" FileFormat="23">aka:Snowflake_RiskAnalytics|||select POLICY_SID
+from SPDW.DM_FIN.DMF_BASE_CAP_ACTUAL
+where time_mth_sid = 202512 and (BVA_SOURCE = 'E' or 		BVA_UNREPORTED_LENDER_FLAG = 'Y')</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>aka:Snowflake_RiskAnalytics
+Query=select POLICY_SID
+from SPDW...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="POLICY_SID" scale="0" size="39" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||select POLICY_SID&#xA;from SPDW.DM_FIN.DMF_BASE_CAP_ACTUAL&#xA;where time_mth_sid = 202512 and (BVA_SOURCE = 'E' or 		BVA_UNREPORTED_LENDER_FLAG = 'Y')" type="FixedDecimal" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="258" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <CachedCosmeticName />
+          <File RecordLimit="" FileFormat="23">aka:Snowflake_RiskAnalytics|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date
+FROM "SPANALYTICS"."ORIGINATION"."RISK_LEVEL"
+where snapshot_month = 202512</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>aka:Snowflake_RiskAnalytics
+Query=SELECT sagen_reference_numbe...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="SAGEN_REFERENCE_NUMBER" size="20" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="V_WString" />
+            <Field name="PRODUCT_LINE_OF_BUSINESS" size="100" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="V_WString" />
+            <Field name="RRM_PROPERTY_REGION" size="255" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="V_WString" />
+            <Field name="OMNI_RURAL_URBAN" size="5" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="V_WString" />
+            <Field name="TENURE" size="1" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="V_WString" />
+            <Field name="POLICY_SID" scale="0" size="39" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="FixedDecimal" />
+            <Field name="PRINT_DATE" size="19" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="DateTime" />
+            <Field name="APPL_RECEIVED_DATE" size="19" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT sagen_reference_number, product_line_of_business, rrm_property_region, omni_rural_urban, tenure, policy_sid, print_date, appl_received_date&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;RISK_LEVEL&quot;&#xA;where snapshot_month = 202512" type="DateTime" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="438" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <CachedCosmeticName />
+          <File RecordLimit="" FileFormat="23">aka:Snowflake_RiskAnalytics|||SELECT SAGEN_REFERENCE_NUMBER,
+BOR_ID,
+BOR_FIRST_NAME,
+BOR_LAST_NAME,
+BOR_SIN,
+BOR_DOB,
+STREET_DIRECTION,
+ADDR_SUFFIX,
+UNIT_NUM,
+STREET_NUM,
+STREET_NAME,
+STREET_TYPE,
+CITY,
+PROVINCE,
+POSTAL_CODE,
+CRD_SCORE_T
+FROM "SPANALYTICS"."ORIGINATION"."SCORE_LEVEL"</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>aka:Snowflake_RiskAnalytics
+Query=SELECT SAGEN_REFERENCE_NUMBE...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="SAGEN_REFERENCE_NUMBER" size="20" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="BOR_ID" scale="0" size="39" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="FixedDecimal" />
+            <Field name="BOR_FIRST_NAME" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="BOR_LAST_NAME" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="BOR_SIN" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="BOR_DOB" size="19" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="DateTime" />
+            <Field name="STREET_DIRECTION" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="ADDR_SUFFIX" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="UNIT_NUM" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="STREET_NUM" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="STREET_NAME" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="STREET_TYPE" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="CITY" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="PROVINCE" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="POSTAL_CODE" size="16777216" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="V_WString" />
+            <Field name="CRD_SCORE_T" scale="20" size="40" source="File: odbc:DSN=Snowflake;UID=650000337@sagen.ca;PWD=__EncPwd1__|||SELECT SAGEN_REFERENCE_NUMBER,&#xA;BOR_ID,&#xA;BOR_FIRST_NAME,&#xA;BOR_LAST_NAME,&#xA;BOR_SIN,&#xA;BOR_DOB,&#xA;STREET_DIRECTION,&#xA;ADDR_SUFFIX,&#xA;UNIT_NUM,&#xA;STREET_NUM,&#xA;STREET_NAME,&#xA;STREET_TYPE,&#xA;CITY,&#xA;PROVINCE,&#xA;POSTAL_CODE,&#xA;CRD_SCORE_T&#xA;FROM &quot;SPANALYTICS&quot;.&quot;ORIGINATION&quot;.&quot;SCORE_LEVEL&quot;" type="FixedDecimal" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="185" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="GNW_APPLICATION_NUMBER" selected="False" type="V_WString" size="2147483647" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="185" y="258" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TENURE" selected="True" rename="TENURE_CHAR" />
+            <SelectField field="ACTUAL_LTV" selected="False" type="Double" size="8" />
+            <SelectField field="FUNDED_COUNT" selected="False" type="Double" size="8" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="185" y="438" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="SAGEN_REFERENCE_NUMBER" selected="True" />
+            <SelectField field="BOR_ID" selected="True" />
+            <SelectField field="BOR_FIRST_NAME" selected="True" />
+            <SelectField field="BOR_LAST_NAME" selected="True" />
+            <SelectField field="BOR_SIN" selected="True" />
+            <SelectField field="BOR_DOB" selected="True" />
+            <SelectField field="STREET_DIRECTION" selected="True" />
+            <SelectField field="ADDR_SUFFIX" selected="True" />
+            <SelectField field="UNIT_NUM" selected="True" />
+            <SelectField field="STREET_NUM" selected="True" />
+            <SelectField field="STREET_NAME" selected="True" />
+            <SelectField field="STREET_TYPE" selected="True" />
+            <SelectField field="CITY" selected="True" />
+            <SelectField field="PROVINCE" selected="True" />
+            <SelectField field="POSTAL_CODE" selected="True" />
+            <SelectField field="CRD_SCORE_T" selected="True" type="Double" size="8" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="438" y="258" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="SAGEN_REFERENCE_NUMBER" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="SAGEN_REFERENCE_NUMBER" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Right_SAGEN_REFERENCE_NUMBER" selected="False" rename="Right_SAGEN_REFERENCE_NUMBER" input="Right_" />
+                <SelectField field="Right_Right_SAGEN_REFERENCE_NUMBER" selected="True" rename="Right_Right_SAGEN_REFERENCE_NUMBER" input="Right_" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="594" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="POLICY_SID" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="POLICY_SID" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Right_POLICY_SID" selected="True" rename="Right_POLICY_SID" input="Right_" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="29">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="786" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="POLICY_SID" selected="False" />
+            <SelectField field="PRODUCT_LINE_OF_BUSINESS" selected="True" type="V_String" size="2147483647" />
+            <SelectField field="RRM_PROPERTY_REGION" selected="True" type="V_String" size="2147483647" />
+            <SelectField field="Right_POLICY_SID" selected="False" />
+            <SelectField field="CHANNEL" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="RRM_PROPERTY_MUNICPALITY" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="LENDER" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="SNAPSHOT_MONTH" selected="False" />
+            <SelectField field="Right_SAGEN_REFERENCE_NUMBER" selected="False" />
+            <SelectField field="TIME_MTH_SID" selected="False" />
+            <SelectField field="PROPERTY_TYPE" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="Right_LENDER_ALIAS" selected="False" />
+            <SelectField field="GNW_APPLICATION_NUMBER" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="CURRENT_OUTSTANDING_BAL_AMT" selected="False" type="Double" size="8" />
+            <SelectField field="MAX_CRD_SCORE_T_BUCKET" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="PRINT_YEAR" selected="False" />
+            <SelectField field="PRINT_YEAR_BUCKET" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="ACTUAL_LTV_BUCKET" selected="False" type="V_String" size="2147483647" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="31">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+        <Position x="546" y="258" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ByName_ErrorMode>Warning</ByName_ErrorMode>
+          <ByName_OutputMode>All</ByName_OutputMode>
+          <Mode>ByName</Mode>
+          <SetOutputOrder value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+    </Node>
+    <Node ToolID="40">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="294" y="438" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="if [CRD_SCORE_T] in (0, 6666, 66666, 666666, 7777, 77777, 777777, 8888, 88888, 888888, 9999, 99999, 999999) then  0&#xA;elseif IsNull([CRD_SCORE_T]) then 0&#xA;elseif [CRD_SCORE_T] &lt;300 then 0&#xA;elseif [CRD_SCORE_T] &gt;1000 then  0&#xA;else [CRD_SCORE_T]&#xA;ENDIF" field="CRD_SCORE_T" size="8" type="Double" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>CRD_SCORE_T = if [CRD_SCORE_T] in (0, 6666, 66666, 666666, 7777, 77777, 777777, ...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="52">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1002" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="if [CRD_SCORE_T] &gt;= 0 and [CRD_SCORE_T] &lt; 680 then '0TO679'&#xA;elseif [CRD_SCORE_T] &gt;= 680 and [CRD_SCORE_T] &lt; 720 then '680TO719'&#xA;elseif [CRD_SCORE_T] &gt;= 720 and [CRD_SCORE_T] &lt; 760 then '720TO759'&#xA;elseif [CRD_SCORE_T] &gt;= 760 and [CRD_SCORE_T] &lt; 800 then '760TO799'&#xA;elseif [CRD_SCORE_T] &gt;= 800 then 'GE800'&#xA;else 'N/A'&#xA;endif" field="CV_RANGE" size="1073741823" type="V_WString" enabled="true" />
+            <FormulaField expression="if IsEmpty([PRINT_DATE]) then [APPL_RECEIVED_DATE]&#xA;else [PRINT_DATE]&#xA;endif" field="DATE" size="10" type="Date" enabled="true" />
+            <FormulaField expression="DateTimeYear([DATE])" field="YEAR" size="8" type="Double" enabled="true" />
+            <FormulaField expression="if [YEAR] &lt;= 2019 then 'LE2019'&#xA;elseif [YEAR] = 2020 then '2020'&#xA;elseif [YEAR] = 2021 then '2021'&#xA;elseif [YEAR] = 2022 then '2022'&#xA;elseif [YEAR] = 2023 then '2023'&#xA;elseif [YEAR] = 2024 then '2024'&#xA;elseif [YEAR] = 2025 then '2025'&#xA;else 'N/A'&#xA;endif" field="VINTAGE" size="1073741823" type="V_WString" enabled="true" />
+            <FormulaField expression="IF [RRM_PROPERTY_REGION] = 'PACIFIC' THEN 'PAC'&#xA;ELSEIF [RRM_PROPERTY_REGION] = 'ALBERTA' THEN 'ALB'&#xA;ELSEIF [RRM_PROPERTY_REGION] = 'PRAIRIES' THEN 'PRA'&#xA;ELSEIF [RRM_PROPERTY_REGION] = 'ONTARIO' THEN 'ONT'&#xA;ELSEIF [RRM_PROPERTY_REGION] = 'GTA' THEN 'GTA'&#xA;ELSEIF [RRM_PROPERTY_REGION] = 'QUEBEC' THEN 'QUE'&#xA;ELSEIF [RRM_PROPERTY_REGION] = 'ATLANTIC' THEN 'ATL'&#xA;ELSE 'N/A'&#xA;ENDIF&#xA;" field="REGION" size="1073741823" type="V_WString" enabled="true" />
+            <FormulaField expression="if [REGION]='GTA' and [OMNI_RURAL_URBAN] = 'Rural' then 'Urban'&#xA;else [OMNI_RURAL_URBAN]&#xA;endif" field="OMNI_RURAL_URBAN" size="5" type="V_WString" enabled="true" />
+            <FormulaField expression="if [OMNI_RURAL_URBAN] = 'Urban' then 'U'&#xA;elseif [OMNI_RURAL_URBAN] = 'Rural' then 'R'&#xA;else 'N/A'&#xA;endif" field="AREA" size="1073741823" type="V_WString" enabled="true" />
+            <FormulaField expression="IF [TENURE_CHAR] = 'L' THEN 'N/A'&#xA;ELSEIF IsEmpty([TENURE_CHAR]) THEN 'N/A'&#xA;ELSEIF [TENURE_CHAR] = '-' THEN 'N/A'&#xA;ELSE [TENURE_CHAR]&#xA;ENDIF" field="TENURE" size="1073741823" type="V_WString" enabled="true" />
+            <FormulaField expression="1" field="COUNT" size="8" type="Double" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>CV_RANGE = if [CRD_SCORE_T] &gt;= 0 and [CRD_SCORE_T] &lt; 680 then '0TO679'
+elseif [C...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="73">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1146" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[VINTAGE] != 'N/A' AND [REGION] != 'N/A' AND [AREA] != 'N/A' AND [TENURE] != 'N/A' AND [CV_RANGE] != 'N/A'</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[VINTAGE] != 'N/A' AND [REGION] != 'N/A' AND [AREA] != 'N/A' AND [TENURE] != 'N/...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="94">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1518" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[VINTAGE]+[REGION]+[AREA]+[TENURE]+[CV_RANGE]" field="COHORT_ID" size="1073741823" type="V_WString" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[COHORT_ID = [VINTAGE]+[REGION]+[AREA]+[TENURE]+[CV_RANGE]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="100">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="1614" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="COHORT_ID" action="GroupBy" rename="COHORT_ID" />
+            <SummarizeField field="COUNT" action="Sum" rename="Sum_COUNT" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="101">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1386" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[REGION] in ('PAC','ALB','ONT','GTA','QUE','PRA') and [AREA]='U'</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[REGION] in ('PAC','ALB','ONT','GTA','QUE','PRA') and [AREA]='U'</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="102">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1518" y="222" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[VINTAGE]+[REGION]+[AREA]+[CV_RANGE]" field="COHORT_ID" size="1073741823" type="V_WString" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[COHORT_ID = [VINTAGE]+[REGION]+[AREA]+[CV_RANGE]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="103">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="1614" y="222" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="COHORT_ID" action="GroupBy" rename="COHORT_ID" />
+            <SummarizeField field="COUNT" action="Sum" rename="Sum_COUNT" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="104">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1386" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[REGION] in ('PAC','ALB','GTA','ONT','PRA','QUE') and [AREA]='R'</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[REGION] in ('PAC','ALB','GTA','ONT','PRA','QUE') and [AREA]='R'</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="105">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1518" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[VINTAGE]+[REGION]+[AREA]+[CV_RANGE]" field="COHORT_ID" size="1073741823" type="V_WString" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[COHORT_ID = [VINTAGE]+[REGION]+[AREA]+[CV_RANGE]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="106">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="1614" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="COHORT_ID" action="GroupBy" rename="COHORT_ID" />
+            <SummarizeField field="COUNT" action="Sum" rename="Sum_COUNT" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="107">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1386" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[REGION] = 'ATL'</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[REGION] = 'ATL'</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="108">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1734" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>&lt;</Operator>
+            <Field>Sum_COUNT</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2026-02-24 11:42:07</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>15</Operand>
+              <StartDate>2026-02-24 11:42:07</StartDate>
+              <EndDate>2026-02-24 11:42:07</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[Sum_COUNT] &lt; 15</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="109">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1722" y="222" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>&lt;</Operator>
+            <Field>Sum_COUNT</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2026-02-24 11:42:07</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>15</Operand>
+              <StartDate>2026-02-24 11:42:07</StartDate>
+              <EndDate>2026-02-24 11:42:07</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[Sum_COUNT] &lt; 15</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="110">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="1722" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>&lt;</Operator>
+            <Field>Sum_COUNT</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2026-02-24 11:42:07</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>15</Operand>
+              <StartDate>2026-02-24 11:42:07</StartDate>
+              <EndDate>2026-02-24 11:42:07</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[Sum_COUNT] &lt; 15</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="128">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+        <Position x="690" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ByName_ErrorMode>Warning</ByName_ErrorMode>
+          <ByName_OutputMode>All</ByName_OutputMode>
+          <Mode>ByName</Mode>
+          <SetOutputOrder value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+    </Node>
+    <Node ToolID="129">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="882" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[PRODUCT_LINE_OF_BUSINESS] = 'MORTGAGE INSURANCE'</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[PRODUCT_LINE_OF_BUSINESS] = 'MORTGAGE INSURANCE'</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="130">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+        <Position x="1854" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ByName_ErrorMode>Warning</ByName_ErrorMode>
+          <ByName_OutputMode>All</ByName_OutputMode>
+          <Mode>ByName</Mode>
+          <SetOutputOrder value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+    </Node>
+    <Node ToolID="131">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="2046" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">TU Cohort Data Pull_for TU.csv</File>
+          <Passwords />
+          <Disable>True</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>|</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>TU Cohort Data Pull_for TU.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="132">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1254" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="PRODUCT_LINE_OF_BUSINESS" selected="False" />
+            <SelectField field="RRM_PROPERTY_REGION" selected="False" />
+            <SelectField field="OMNI_RURAL_URBAN" selected="False" />
+            <SelectField field="TENURE_CHAR" selected="False" />
+            <SelectField field="PRINT_DATE" selected="False" />
+            <SelectField field="APPL_RECEIVED_DATE" selected="False" />
+            <SelectField field="CRD_SCORE_T" selected="False" />
+            <SelectField field="DATE" selected="False" />
+            <SelectField field="YEAR" selected="False" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="137">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1950" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="138">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Test.Test">
+        <Position x="1914" y="18" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Tests>
+            <Test>
+              <Name>Test</Name>
+              <Connection>#1</Connection>
+              <Type>ExpAll</Type>
+              <Value>[Sum_COUNT]&gt;=15</Value>
+            </Test>
+          </Tests>
+          <DontReportSubsequent value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Test</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTest" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="11" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Output" />
+      <Destination ToolID="11" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="10" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="40" Connection="Output" />
+      <Destination ToolID="10" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="40" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="10" Connection="Join" />
+      <Destination ToolID="31" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="10" Connection="Left" />
+      <Destination ToolID="31" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="11" Connection="Join" />
+      <Destination ToolID="128" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="11" Connection="Left" />
+      <Destination ToolID="128" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="29" Connection="Output" />
+      <Destination ToolID="129" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="52" Connection="Output" />
+      <Destination ToolID="73" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="73" Connection="True" />
+      <Destination ToolID="132" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="94" Connection="Output" />
+      <Destination ToolID="100" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="94" Connection="Output" />
+      <Destination ToolID="130" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="102" Connection="Output" />
+      <Destination ToolID="130" Connection="Input" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="105" Connection="Output" />
+      <Destination ToolID="130" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="100" Connection="Output" />
+      <Destination ToolID="108" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="100" Connection="Output" />
+      <Destination ToolID="138" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="101" Connection="True" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="102" Connection="Output" />
+      <Destination ToolID="103" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="103" Connection="Output" />
+      <Destination ToolID="109" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="104" Connection="True" />
+      <Destination ToolID="102" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="105" Connection="Output" />
+      <Destination ToolID="106" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="106" Connection="Output" />
+      <Destination ToolID="110" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="107" Connection="True" />
+      <Destination ToolID="105" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="128" Connection="Output" />
+      <Destination ToolID="29" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="129" Connection="True" />
+      <Destination ToolID="52" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="130" Connection="Output" />
+      <Destination ToolID="137" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="132" Connection="Output" />
+      <Destination ToolID="101" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="132" Connection="Output" />
+      <Destination ToolID="104" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="132" Connection="Output" />
+      <Destination ToolID="107" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="137" Connection="Output" />
+      <Destination ToolID="131" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>RISK_Creation of TU Cohorts_03MAR26</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="5bfc5b84-38dd-43c5-b3c1-a66ca6935302" />
+      <Telemetry>
+        <PreviousWorkflowId value="278671b5-7389-474d-894e-971f0ac27ebc" />
+        <OriginWorkflowId value="6571ca90-c6ad-4883-abb7-40737b89789d" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
